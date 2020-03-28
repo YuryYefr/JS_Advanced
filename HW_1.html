@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Homework</title>
+</head>
+<body>
+<ul>
+    <li>Mock data</li>
+    <li>Mock data</li>
+    <li>Mock data</li>
+    <li>Mock data</li>
+</ul>
+
+<button onclick="first()">First Element</button>
+<br/>
+<button onclick="last()">Last Element</button>
+<br/>
+<button onclick="nextElem()">Next Element</button>
+<br/>
+<button onclick="prevElem()">Previous Element</button>
+<br/>
+<button onclick="addElem()">Add Element</button>
+<br/>
+<button onclick="delElem()">Delete Element</button>
+<br/>
+<button onclick="shiftElem()">Add To The Beginning</button>
+<br/>
+<script>
+
+    function getCurrent() {
+        let allElements = document.body.querySelectorAll('li');
+        for (let i = 0; i < allElements.length; i++) {
+            if (allElements[i].style.backgroundColor === 'red') {
+                return i
+            }
+        }
+    }
+
+    function clearAll(item) {
+        item.style.backgroundColor = 'white';
+    }
+
+    function first() {
+        let allElements = document.body.querySelectorAll('li');
+        allElements.forEach(clearAll);
+        let element = document.body.querySelector('ul').firstElementChild;
+        element.style.backgroundColor = 'red';
+    }
+
+    function last() {
+        let allElements = document.body.querySelectorAll('li');
+        allElements.forEach(clearAll);
+        let element = document.body.querySelector('ul').lastElementChild;
+        element.style.backgroundColor = 'red';
+    }
+
+    function nextElem() {
+        let allElements = document.body.querySelectorAll('li');
+        let current = allElements[getCurrent()];
+        if (current && current.nextElementSibling) {
+            allElements.forEach(clearAll);
+            current.nextElementSibling.style.backgroundColor = 'red'
+        } else if (current === undefined) {
+            alert('Nothing selected')
+        } else if (current && !current.nextElementSibling) {
+            alert('Last Selector')
+        }
+    }
+
+    function prevElem() {
+        let allElements = document.body.querySelectorAll('li');
+        let current = allElements[getCurrent()];
+        if (current && current.previousElementSibling) {
+            allElements.forEach(clearAll);
+            current.previousElementSibling.style.backgroundColor = 'red'
+        } else if (current === undefined) {
+            alert('Nothing selected')
+        } else if (current && !current.previousElementSibling) {
+            alert('Last Selector')
+        }
+    }
+
+    function addElem() {
+        let newElement = document.createElement('li');
+        newElement.innerText = 'Added Element';
+        document.body.querySelector('ul').appendChild(newElement)
+    }
+
+    function delElem() {
+        let allElements = document.body.querySelectorAll('li');
+        let current = allElements[getCurrent()];
+        if (current) {
+            current.remove()
+        } else alert('Nothing Selected');
+    }
+
+    function shiftElem() {
+        let newElement = document.createElement('li');
+        newElement.innerText = 'Shifted Element';
+        let mainElement = document.body.querySelector('ul');
+        mainElement.prepend(newElement)
+    }
+</script>
+
+</body>
+</html>
