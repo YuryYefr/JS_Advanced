@@ -89,19 +89,13 @@
     let timer;
     let timerCheck;
     let counter = 0;
-    // reversed timer
-    // let counter = 30;
 
     function startTimer() {
         timer = setInterval(function () {
             document.getElementById('counter').innerHTML = counter += 1
-            // reversed timer
-            // document.getElementById('counter').innerHTML = counter -= 1
         }, 1000);
         timerCheck = setInterval(function () {
             if (counter === 30) {
-                //    reversed timer
-                // if (counter === 1) {
                 stopTimer()
             }
         }, 1000)
