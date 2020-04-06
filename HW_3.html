@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--
+    Запросите у пользователя ввести какую-то фразу.
+    Отобразите каждое отдельное слово в виде списка ul li.
+    Также отобразите первое слово UPPERCASE, а последние 2 с маленькой.
+    Найдите все буквы "а" их количество в модальное окно.
+ -->
+    <!-- Создайте счетчик секунд, который начинает отcчет с 1 и заканчивается на 30,
+ также добавьте кнопки которые останавливают отcчет,
+  и запускают его заново и добавьте кнопку обнуляющую отcчет.
+   Также попробуйте изменить код так чтобы отcчет начинался с 30 и заканчивался на 1. -->
+    <meta charset="UTF-8">
+    <title>Home Work 3</title>
+    <style>
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <input type="text" id="input phrase" placeholder="type here">
+    <input type="button" onclick="fetchData()" value="Press when finish phrase">
+    <div class="container">
+        <input type="button" onclick="countLetterA()" value="count 'a'">
+    </div>
+</div>
+<div>
+    <input type="button" onclick="startTimer()" value="Start Timer">
+    <input type="button" onclick="stopTimer()" value="Stop Timer">
+    <input type="button" onclick="clearTimer()" value="Clear Timer">
+    <input type="button" onclick="reverseTimer()" value="Reverse Timer">
+    <p id="counter"></p>
+
+
+
+</div>
+<br/>
+
+<script>
+    function caseCase(items) {
+        for (let i = 0; i < items.length; i++) {
+            if (i === 0) {
+                items[i] = items[i].toUpperCase()
+            }
+            if (items.length > 1) {
+                items.slice(-1)[0] = items.slice(-1)[0].toLowerCase();
+
+            }
+            if (items.length > 2) {
+                items.slice(-2)[0] = items.slice(-2)[0].toLowerCase()
+            }
+        }
+        return items
+    }
+
+    function fetchData() {
+        let inputText = document.getElementById('input phrase').value;
+        let strippedInput = inputText.split(' ');
+        let insertPlace = document.createElement('ul');
+        document.body.append(insertPlace);
+        let calculate = caseCase(strippedInput);
+        if (calculate == '') {
+            return
+        }
+        for (let i = 0; i < calculate.length; i++) {
+            let valCreated = document.createElement('li');
+            valCreated.innerText = calculate[i];
+            document.querySelector('ul').appendChild(valCreated);
+        }
+    }
+
+    function countLetterA() {
+        let allLis = document.querySelectorAll('li');
+        let counter = 0;
+        for (let i = 0; i < allLis.length; i++) {
+            let inner = allLis[i].innerHTML.split('');
+            for (let i = 0; i < inner.length; i++) {
+                if (inner[i] === 'a')
+                    counter += 1
+            }
+        }
+        alert(counter)
+    }
+
+    let timer;
+    let timerCheck;
+    let counter = 0;
+    // reversed timer
+    // let counter = 30;
+
+    function startTimer() {
+        timer = setInterval(function () {
+            document.getElementById('counter').innerHTML = counter += 1
+            // reversed timer
+            // document.getElementById('counter').innerHTML = counter -= 1
+        }, 1000);
+        timerCheck = setInterval(function () {
+            if (counter === 30) {
+                //    reversed timer
+                // if (counter === 1) {
+                stopTimer()
+            }
+        }, 1000)
+    }
+
+    function stopTimer() {
+        clearInterval(timer);
+        clearInterval(timerCheck)
+    }
+
+    function clearTimer() {
+        stopTimer();
+        document.querySelector('p').innerHTML = 0;
+    }
+    function reverseTimer() {
+        stopTimer();
+        timer = setInterval(function () {
+            document.getElementById('counter').innerHTML = counter -= 1
+        }, 1000);
+        timerCheck = setInterval(function () {
+                if (counter === 1) {
+                stopTimer()
+            }
+        }, 1000)
+
+    }
+</script>
+</body>
+</html>
