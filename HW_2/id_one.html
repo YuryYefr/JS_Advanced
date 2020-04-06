@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Classwork</title>
+    <style type="text/css">
+        #one {
+            width: 700px;
+            height: 700px;
+            border: 1px solid #000;
+            float: left;
+
+        }
+
+        #two {
+            float: right;
+        }
+    </style>
+</head>
+<body>
+<div id="one" onclick="divide(this)">one</div>
+<div id="two" onclick="addPrepend()"><p>two</p></div>
+<script>
+    function divide(div) {
+        console.log(div);
+        var width = getComputedStyle(div).width;
+        width = width.split('px');
+        width = width[0] / 2;
+        div.style.width = width + 'px';
+
+        var divDiv = div.cloneNode(true);
+        div.insertAdjacentElement('afterEnd', divDiv);
+
+
+    }
+
+    function addPrepend() {
+        let mainDiv = document.getElementById('two');
+        let newDiv = document.createElement('div');
+        newDiv.id = 'two_first';
+        mainDiv.insertAdjacentElement('beforebegin', newDiv);
+        mainDiv.id = 'two_second';
+    }
+
+
+    // Добавьте после дива с id=one еще один див с текстом two и id=two
+    // На клик по id=two добавьте перед ним див с id - two_first, а див с id=two измените на two_second 
+</script>
+</body>
+</html>
