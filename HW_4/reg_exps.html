@@ -1,0 +1,31 @@
+<!-- Напишите регулярные выражения, которые будут выбирать
+    индекс - 55535 - 5 numbers
+    ip адресс, пример 255.255.255.255
+    цены в долларах - $0.84, $2.84, $4
+    дата в виде - 30/12/2016 - день, месяц, год
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Work 4</title>
+</head>
+<body>
+<script>
+    let fiveNumbers = /^\d{5}$/;
+    let numTest = '12345';
+    document.write('numbers' + ' ' + fiveNumbers.test(numTest));
+    let gateWay = /^\d{3}\.\d{3}\.\d{3}\.\d{3}/;
+    let gateTest = '255.255.345.545';
+    document.write(' gateway' + ' ' + gateWay.test(gateTest));
+    let price = /\$\d{0,9}/;
+    let priceCheck = '$5.6';
+    document.write(' dollar prices' + ' ' + price.test(priceCheck));
+    let date = /(^\d{1,2}\/\d{1,2}\/\d{1,4})/;
+    let checkDate = '11/04/2020';
+    document.write(' date' + ' ' + date.test(checkDate));
+
+</script>
+
+</body>
+</html>

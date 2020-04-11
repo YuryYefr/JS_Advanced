@@ -1,0 +1,94 @@
+<!-- Доработайте пример, 005_thisExample.html,
+ при наведении мыши к одному из блоков,
+  цвет блока должен измениться, на уникальный,
+   такой которого еще нету у существующих блоков.
+    Также выведите в блок текстовое оповещение о информации цвета,
+     который используется для фона данного блока.
+      При попытке закрыть вкладку,
+       придупредите пользователя о том что информация будет утеряна.
+        Используйте window.onload.  -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Work 5</title>
+    <style>
+        div {
+            background-color: green;
+            display: block;
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+            /*float: left;*/
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<script>
+    window.onload = function () {
+        const COLORS = {
+            0: 'brown',
+            1: 'black',
+            2: 'green',
+            3: 'red',
+            4: 'purple',
+            5: 'yellow'
+        };
+
+        function getRandomInRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        let divs = document.getElementsByTagName('div');
+        unloadPage();
+        for (let i = 0; i < divs.length; i++) {
+            let randInt = getRandomInRange(0, 5);
+            divs[i].style.backgroundColor = COLORS[Math.round(randInt)];
+        }
+
+        function getUniqueColor() {
+            let uniqueColor = '';
+            let divsColors = getDivColors();
+            for (let i in COLORS) {
+                if (!divsColors.hasOwnProperty(COLORS[i])) {
+                    uniqueColor = COLORS[i];
+                    break
+                }
+            }
+            return uniqueColor
+        }
+
+        function getDivColors() {
+            let usedColors = {};
+            for (let i = 0; i < divs.length; i++) {
+                usedColors[divs[i].style.backgroundColor] = divs[i].style.backgroundColor;
+            }
+            return usedColors
+
+        }
+
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].onmouseover = function (e) {
+                let color = getUniqueColor();
+                e.target.style.backgroundColor = color;
+                e.target.innerText = color;
+            }
+        }
+    };
+
+    function unloadPage() {
+        window.onbeforeunload = function () {
+            return 'Are you sure?'
+        };
+    }
+
+
+</script>
+
+</body>
+</html>
