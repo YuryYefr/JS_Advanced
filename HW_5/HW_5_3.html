@@ -1,0 +1,54 @@
+<!--Доработайте пример 004_Attr_Tech.html таким образом,-->
+<!--     чтобы при наведении на span элементы,-->
+<!--    подсказка всплывала под ними, а не в модальном окне.-->
+<!--     Используйте addEventListener-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Work 5</title>
+    <style>
+        .help {
+            width: 300px;
+            height: 50px;
+            margin: auto;
+        }
+    </style>
+
+</head>
+<body>
+<div id="main-div">
+    <span data-tooltip="наведите">наведите</span>
+    <span data-tooltip="для">для</span>
+    <span data-tooltip="подсказки">подсказки</span>
+</div>
+<script>
+    window.onload = function () {
+        var mainDiv = document.getElementById("main-div");
+        mainDiv.addEventListener('mouseover', helpDisplay);
+        mainDiv.addEventListener('mouseout', removeTransient);
+
+        function helpDisplay(e) {
+            let dataToggleId = e.target.getAttribute('data-tooltip');
+            if (!dataToggleId) {
+                return
+            }
+            let helpWindow = document.createElement('div');
+            helpWindow.id = 'help window';
+            helpWindow.innerText = dataToggleId;
+            helpWindow.style.position = 'absolute';
+            helpWindow.style.top = String(e.clientY + 20) + 'px';
+            helpWindow.style.left = String(e.clientX) + 'px';
+            document.body.insertAdjacentElement('beforeEnd', helpWindow);
+        }
+
+        function removeTransient() {
+            let element = document.getElementById('help window');
+            if (element) {
+                element.remove()
+            }
+        }
+    };
+</script>
+</body>
+</html>

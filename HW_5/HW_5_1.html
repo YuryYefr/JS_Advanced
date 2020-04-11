@@ -1,0 +1,61 @@
+<!--
+Создайте ссылку и див с текстом внутри,
+ который изначально при загрузке страницы будет скрыт.
+При клике на ссылку див появляется,
+ если повторно нажать ссылку див и текст должны пропасть.
+Также создайте кнопку,
+ которая будет отменять выполнение обработчика клика по ссылке.
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Work 5</title>
+    <style>
+        .hidden {
+            display: none;
+        }
+
+        div {
+            background-color: red;
+            height: 100px;
+            width: 100px;
+            margin: 10px;
+        }
+
+    </style>
+</head>
+<body>
+<a id='link' href="#">Link</a>
+<div class='hidden' id="element">some</div>
+<input type="button" id="prevent" value="prevent listener">
+
+<script>
+    window.onload = function () {
+        let toggle = document.getElementById('link');
+        toggle.addEventListener('click', viewResolve);
+        let preventElement = document.getElementById('prevent');
+        preventElement.addEventListener('click', preventToggle);
+        // function viewResolve() {
+        //     let element = document.getElementById('element');
+        //     if (element.style.display === '' || element.style.display === 'none') {
+        //         element.style.display = 'block';
+        //     } else {
+        //         element.style.display = 'none';
+        //     }
+        //
+        // }
+        function viewResolve() {
+            let element = document.getElementById('element');
+            element.classList.toggle('hidden')
+
+        }
+
+        function preventToggle() {
+            toggle.removeEventListener('click', viewResolve)
+        }
+
+    }
+</script>
+</body>
+</html>
