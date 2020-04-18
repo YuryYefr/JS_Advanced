@@ -1,0 +1,99 @@
+<!-- Реализуйте последний 2 слайда в презентации
+ с помощью пройденого на уроке материала -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home_work_7_2</title>
+</head>
+<body>
+<script>
+    // Inherit
+    class Human {
+        constructor(name, profession) {
+            this.name = name
+            this.profession = profession
+
+        }
+
+        walk() {
+            console.log('Walks')
+        }
+
+        drink() {
+            console.log('Drinks')
+        }
+
+        eat() {
+            console.log('Eats')
+        }
+
+    }
+
+    class Soldier extends Human {
+        shoot() {
+            console.log('Shoots')
+        }
+    }
+
+    class BaseDoctor extends Human {
+        cure() {
+            console.log('Cures')
+        }
+    }
+
+    let someHuman = new Human('John', 'Manager')
+    let someSoldier = new Soldier('Rambo', 'Gunner')
+    let someDoctor = new BaseDoctor('Mary', 'Surgeon')
+    console.log(someHuman);
+    console.log(someSoldier);
+    console.log(someDoctor);
+
+    // Polymorph
+    class UglyDoctor {
+        constructor(name) {
+            this.name = name
+        }
+        cure () {
+            console.log('cures')
+        }
+    }
+    class Doctor extends UglyDoctor {
+
+        walk() {
+            console.log('Walks')
+        }
+
+        drink() {
+            console.log('Drinks')
+        }
+
+        eat() {
+            console.log('Eats')
+        }
+
+    }
+    class Dentist extends Doctor {
+        cure () {
+            console.log('Drills teeth')
+        }
+    }
+    class Surgeon extends Doctor {
+        cure () {
+            console.log('slicing flesh')
+        }
+    }
+    let predecessor = new UglyDoctor('Mary')
+    let baseDoctor = new Doctor('Jonathan')
+    let someDentist = new Dentist('somename')
+    let someSurgeon = new Surgeon('Nikita')
+
+    console.log(predecessor);
+    console.log(baseDoctor);
+    console.log(someDentist);
+    console.log(someSurgeon);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!--создайте div, при клике на него, div начинает двигаться вправо, при клике на кнопку - останавливается, при попадании div к краю окна, он переходит к началу окна.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home_work_6_2</title>
+    <style>
+        .container {
+            height: 5rem;
+            width: 5rem;
+            background-color: chartreuse;
+            position: absolute;
+        }
+
+        input {
+            top: 6rem;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="square" class="container"></div>
+<div>
+    <input type="button" value="Stop square" id="stop">
+</div>
+
+<script>
+    window.onload = function () {
+        let square = document.getElementById('square')
+        let stopSquare = document.getElementById('stop')
+        square.addEventListener('click', moveSquare)
+        stopSquare.addEventListener('click', squareStop)
+        let endScreen = document.body.getBoundingClientRect().right
+
+        let beginMovement;
+
+        function moveSquare(element) {
+            beginMovement = setInterval(function () {
+                let position = element.target.getBoundingClientRect()
+                if (position.right < endScreen) {
+                    square.style.left = position.left + 25 + 'px'
+
+                } else {
+                    square.style.left = 0 + 'px'
+                }
+            }, 500)
+        }
+
+        function squareStop() {
+            clearInterval(beginMovement)
+        }
+
+    }
+</script>
+</body>
+</html>

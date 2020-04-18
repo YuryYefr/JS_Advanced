@@ -1,0 +1,85 @@
+<!-- Переделайте примеры 013 через работу атрибутов.
+ Попробуйте варианты с рефакторингом -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home_work_6_3</title>
+    <style type="text/css">
+        input.invalid {
+            background-color: Pink;
+        }
+
+        input.valid {
+            background-color: LightGreen;
+        }
+
+        label {
+            text-align: center;
+            cursor: pointer;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+    </style>
+</head>
+<body>
+<form name="form1">
+    Name:
+    <input type="text" name="userName"/><br/>
+    email:
+    <input type="text" name="email"/><br/>
+    zipcode:
+    <input type="text" name="zip"/><br/>
+    <input type="submit"/>
+</form>
+<form id="form">
+    <div class="d-flex">
+        <div><h1 id="failed"></h1></div>
+        <div class="p-2">
+            <label for="userName">Name</label><br/>
+            <input type="text" name="userName" id="userName"/>
+        </div>
+        <div class="p-2">
+            <label for="email">Email</label><br/>
+            <input type="text" name="email" id="email"/>
+        </div>
+        <div class="p-2">
+            <label for="zip">Zip</label><br/>
+            <input type="number" name="zip" id="zip"/>
+        </div>
+    </div>
+    <input type="submit" id="submit"/>
+</form>
+<script>
+    window.onload = function () {
+        let userName = document.getElementById('userName')
+        let email = document.getElementById('email')
+        let zip = document.getElementById('zip')
+        let submit = document.getElementById('form')
+        let failed = document.getElementById('failed')
+        submit.addEventListener('submit', checkForm);
+
+        function checkForm(element) {
+            if (userName.value !== 'ME') {
+                element.preventDefault();
+                failed.innerHTML = 'Wrong Name'
+                userName.classList.toggle('invalid')
+            } else if (email.value !== 'some@gmail.com') {
+                element.preventDefault();
+                failed.innerHTML = 'Wrong Email'
+                email.classList.toggle('invalid')
+            } else if (zip.value !== '05545') {
+                element.preventDefault();
+                failed.innerHTML = 'Wrong Zip'
+                zip.classList.toggle('invalid')
+            }
+        }
+    }
+
+</script>
+</body>
+</html>

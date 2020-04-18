@@ -1,0 +1,53 @@
+<!-- Создайте функцию, которая возвращает день недели для даты.
+ День нужно возвратить в формате - понедельник имеет номер 1,
+  вторник номер 2, …, воскресенье - номер 7. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home_work_7_1</title>
+</head>
+<body>
+<input type="date" id="date" placeholder="mm/dd/yy">
+<input type="button" value="Click when ready" id="check_day">
+<script>
+    window.onload = function () {
+        let trigger = document.getElementById('check_day')
+        trigger.addEventListener('click', checkDay)
+
+        function checkDay() {
+            let input = document.getElementById('date').value
+            let currDate = new Date(input)
+            let currDay = currDate.getDay()
+            if (currDay) {
+                switch (currDay) {
+                    case 1:
+                        alert('Monday')
+                        break
+                    case 2:
+                        alert('Tuesday')
+                        break
+                    case 3:
+                        alert('Wednesday')
+                        break
+                    case 4:
+                        alert('Thursday')
+                        break
+                    case 5:
+                        alert('Friday')
+                        break
+                    case 6:
+                        alert('Saturday')
+                        break
+                    case 7:
+                        alert('Sunday')
+                        break
+                }
+            } else {
+                alert('Check your input')
+            }
+        }
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!--back to top button; drag;-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HW_6_1</title>
+    <style>
+        .container {
+            height: 5rem;
+            width: 5rem;
+            background-color: chartreuse;
+        }
+    </style>
+</head>
+<body>
+<div class="container" id="square"></div>
+<input id="reset" type="button" value="Back to top">
+
+<script>
+    window.onload = function () {
+        let reset = document.getElementById('reset')
+        let square = document.getElementById('square')
+        let resetPos = document.getElementById('square').getBoundingClientRect()
+        square.addEventListener('mousedown', attachSquare)
+        reset.addEventListener('click', backToTop)
+
+        function attachSquare(element) {
+            let position = getPosition(square);
+            let xCoord = element.pageX - position.left;
+            let yCoord = element.pageY - position.top;
+
+            square.style.position = 'absolute';
+            document.body.appendChild(square);
+            moveElement(element);
+
+            function moveElement(element) {
+                square.style.left = element.pageX - xCoord + 'px';
+                square.style.top = element.pageY - yCoord + 'px';
+            }
+
+            document.onmousemove = function (element) {
+                moveElement(element);
+            };
+
+            square.onmouseup = function () {
+                document.onmousemove = null;
+                square.onmouseup = null;
+            };
+
+        }
+
+        function getPosition(element) {
+            let currPosition = element.getBoundingClientRect();
+            return {
+                top: currPosition.top + pageYOffset,
+                left: currPosition.left + pageXOffset
+            };
+        }
+
+        function backToTop() {
+            square.style.top = resetPos.top + 'px'
+            square.style.left = resetPos.left + 'px'
+        }
+
+    }
+</script>
+</body>
+</html>
