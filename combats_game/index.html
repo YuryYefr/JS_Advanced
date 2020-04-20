@@ -37,9 +37,11 @@
             return Math.random() * (max - min) + min;
         }
 
+        let enemyNum = 1
+
         function enemiesCreate() {
             let enemies = []
-            let enemyNum = 1
+
             for (let i = 0; i < 6; i++) {
                 let enemyDamage = Math.round(getRandomInRange(27, 45))
                 let enemyName = `enemy` + enemyNum
@@ -50,23 +52,34 @@
             return enemies
         }
 
-        let enemiesPool = enemiesCreate()
-        let hero = new Hero(50, 100, 'Johny Cage')
-        console.log(enemiesPool);
-        console.log(hero);
+
+        function sleep(milliseconds) {
+            const date = Date.now();
+            let currentDate = null;
+            do {
+                currentDate = Date.now();
+            } while (currentDate - date < milliseconds);
+        }
 
         function battleStart() {
+            let enemiesPool = enemiesCreate()
+            let hero = new Hero(50, 100, 'Johny Cage')
             for (let i = 0; i < enemiesPool.length;) {
                 if (enemiesPool[i].health > 0) {
+                    sleep(1000)
                     console.log(hero.attack(enemiesPool[i].name))
                     enemiesPool[i].health = enemiesPool[i].health - hero.strength
                     if (enemiesPool[i].health <= 0) {
+                        sleep(1000)
                         hero.regeneration()
                         console.log(`${enemiesPool[i].name} has died`)
                         i++
                     } else if (hero.health <= 0) {
+                        sleep(1000)
                         enemiesPool[i].shout()
+                        break
                     } else {
+                        sleep(1000)
                         console.log(`${enemiesPool[i].name}` + ` has ${enemiesPool[i].health} health`)
                         console.log(enemiesPool[i].attack(hero.name))
                         hero.health = hero.health - enemiesPool[i].strength
@@ -79,7 +92,7 @@
 
         setInterval(function () {
             battleStart()
-        }, 1000)
+        }, 5000)
 
     }
 </script>
