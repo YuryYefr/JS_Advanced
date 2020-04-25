@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cookies</title>
+    <style>
+        .container {
+            justify-items: center;
+            background-color: red;
+            width: 3rem;
+            height: 1rem;
+            margin: auto;
+            padding: 1rem;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="block" class="container hidden"><input type="button" onclick="Refresh()" value="Exit"></div>
+<script>
+    window.onload = function () {
+        let block = document.getElementById('block')
+        const baseName = ['admin', 'Admin']
+        document.cookie = encodeURIComponent(`name=${baseName}`)
+        let name = prompt('type name')
+        userCheck(name)
+        function userCheck(input) {
+                let allCookies = document.cookie;
+                let exists = allCookies.indexOf('name=' + input);
+                if (exists) {
+                    alert(`${input} has logged in`)
+                    block.classList.toggle('hidden')
+                }
+        }
+
+    }
+    function Refresh() {
+            this.location.reload()
+        }
+</script>
+
+</body>
+</html>
