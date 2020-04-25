@@ -22,14 +22,14 @@
 <script>
     window.onload = function () {
         let block = document.getElementById('block')
-        const baseName = ['admin', 'Admin']
+        const baseName = 'admin'
         document.cookie = encodeURIComponent(`name=${baseName}`)
         let name = prompt('type name')
         userCheck(name)
         function userCheck(input) {
-                let allCookies = document.cookie;
-                let exists = allCookies.indexOf('name=' + input);
-                if (exists) {
+                let cookies = decodeURIComponent(document.cookie)
+                let exists = cookies.indexOf('name=' + input.toLowerCase());
+                if (exists > -1 && input.toLowerCase() === 'admin') {
                     alert(`${input} has logged in`)
                     block.classList.toggle('hidden')
                 }
