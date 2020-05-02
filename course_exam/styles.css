@@ -1,0 +1,144 @@
+.hidden {
+    display: none !important;
+}
+
+body {
+    background-color: #441015 !important;
+}
+
+#main {
+    background-color: grey;
+    padding: 5rem;
+    justify-content: center;
+}
+
+.container {
+    width: 12% !important;
+    top: 3%;
+    left: 5%;
+    background-color: black;
+    color: red;
+    margin-top: 10%;
+    justify-content: center;
+}
+
+.card {
+    padding: 0.5rem;
+    background-color: darkslategrey !important;
+    box-shadow: 0 0 2rem rgba(0, 0, 0, 0.7);
+}
+
+p {
+    color: red;
+}
+
+.card:hover {
+    background-color: green;
+}
+
+.d-flex {
+    justify-content: space-between;
+}
+
+.title {
+    top: 5%;
+    color: #333333;
+    left: 40%;
+    position: fixed;
+    z-index: 1000;
+}
+
+.btn-toolbar {
+    margin-left: 40%;
+    position: absolute;
+}
+
+.modal-window {
+    justify-items: center;
+    z-index: 1;
+    top: 10rem;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: #5c6588;
+}
+
+.modal-content {
+    background-color: #040915 !important;
+    margin: auto;
+    padding: 2rem;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+a:hover {
+    background-color: grey;
+    cursor: pointer;
+}
+
+.close-window {
+    cursor: pointer;
+    color: grey;
+    font-size: 20px;
+}
+
+/*Took from MDN*/
+.view_port {
+    top: 0;
+    position: fixed;
+    background-color: black;
+    height: 25px;
+    width: 100%;
+    overflow: hidden;
+}
+.cylon_eye {
+    background-color: red;
+    background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.9) 75%);
+    background-image: -moz-linear-gradient(left, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.9) 75%);
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.9) 75%);
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.9) 25%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.9) 75%);
+    color: white;
+    height: 100%;
+    width: 20%;
+
+    -webkit-animation: 4s linear 0s infinite alternate move_eye;
+    -moz-animation: 4s linear 0s infinite alternate move_eye;
+    -o-animation: 4s linear 0s infinite alternate move_eye;
+    animation: 4s linear 0s infinite alternate move_eye;
+}
+
+@-webkit-keyframes move_eye {
+    from {
+        margin-left: -20%;
+    }
+    to {
+        margin-left: 100%;
+    }
+}
+
+@-moz-keyframes move_eye {
+    from {
+        margin-left: -20%;
+    }
+    to {
+        margin-left: 100%;
+    }
+}
+
+@-o-keyframes move_eye {
+    from {
+        margin-left: -20%;
+    }
+    to {
+        margin-left: 100%;
+    }
+}
+
+@keyframes move_eye {
+    from {
+        margin-left: -20%;
+    }
+    to {
+        margin-left: 100%;
+    }
+}
